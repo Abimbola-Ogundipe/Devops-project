@@ -11,4 +11,5 @@
 
 ![simpleweb](Image/simpleweb.jpeg)
 ### Step 4 : I then Outputs the public IP address of the created EC2 instance after Terraform applies the configuration.
-** **
+
+![webpage](Image/webpage.jpeg)
