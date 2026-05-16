@@ -30,7 +30,7 @@ resource "aws_security_group" "ec2_sg2_new" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["81.129.228.123/32"] 
+    cidr_blocks = ""
   }
 
   egress {
