@@ -8,6 +8,7 @@
 ![security](Image/security_teraform.jpeg)
 
 ### Step 3 : Created a t3.micro EC2 instance using Amazon Linux, then attached the defined security group, and runs a startup script that installs, starts, and serves a basic Apache web page.
-** **
+
+![simpleweb](Image/simpleweb.jpeg)
 ### Step 4 : I then Outputs the public IP address of the created EC2 instance after Terraform applies the configuration.
 ** **
