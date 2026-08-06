@@ -1,5 +1,6 @@
 # IAM Role and Policies for Lambda
 
+# Create the lamda Iam role
 resource "aws_iam_role" "lambda_role" {
   name = "${var.project_name}-lambda-role"
 
