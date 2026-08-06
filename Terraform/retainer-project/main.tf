@@ -1,4 +1,3 @@
-# main.tf
 # Sensitive Data Retention Project
 
 locals {
