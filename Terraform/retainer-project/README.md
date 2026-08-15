@@ -7,3 +7,10 @@
 ## The provider.tf file tells Terraform which cloud provider to use and which AWS Region to deploy my resources into and Instead of hardcoding the region (for example, eu-west-2 or us-east-1), I used a variable for reusability (region = var.aws_region).
 
 ## The variables.tf file defines all the values that can change without modifying the Terraform code itself. This makes the project reusable and easier to maintain.
+
+## The iam.tf controls what the Lambda function is allowed to do.
+1. Read objects from the source bucket
+2. Write objects to the quarantine bucket
+3. Delete objects if necessary
+4. Write logs to CloudWatch
+5. Access Amazon Macie findings 
