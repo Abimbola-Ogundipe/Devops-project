@@ -12,5 +12,5 @@
 1. Read objects from the source bucket
 2. Write objects to the quarantine bucket
 3. Delete objects if necessary
-4. Write logs to CloudWatch
+4. Write logs to CloudWatch, this helps with trouble shooting issues.
 5. Access Amazon Macie findings 
