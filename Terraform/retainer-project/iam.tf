@@ -1,6 +1,8 @@
 # IAM Role and Policies for Lambda
 
-# Create the lamda Iam role
+
+# the Lambda IAM Role
+
 resource "aws_iam_role" "lambda_role" {
   name = "${var.project_name}-lambda-role"
 
@@ -10,6 +12,7 @@ resource "aws_iam_role" "lambda_role" {
     Statement = [
       {
         Effect = "Allow"
+
         Principal = {
           Service = "lambda.amazonaws.com"
         }
@@ -24,6 +27,7 @@ resource "aws_iam_role" "lambda_role" {
   }
 }
 
+
 # Lambda IAM Policy
 
 resource "aws_iam_policy" "lambda_policy" {
@@ -34,6 +38,7 @@ resource "aws_iam_policy" "lambda_policy" {
 
     Statement = [
 
+      # Read objects from the source bucket
       {
         Sid    = "ReadSourceBucket"
         Effect = "Allow"
@@ -49,14 +54,14 @@ resource "aws_iam_policy" "lambda_policy" {
         ]
       },
 
+
+      # Copy sensitive objects to quarantine bucket
       {
         Sid    = "WriteToQuarantineBucket"
         Effect = "Allow"
 
         Action = [
-          "s3:PutObject",
-          "s3:GetObject",
-          "s3:DeleteObject"
+          "s3:PutObject"
         ]
 
         Resource = [
@@ -64,6 +69,8 @@ resource "aws_iam_policy" "lambda_policy" {
         ]
       },
 
+
+      # CloudWatch logging
       {
         Sid    = "CloudWatchLogs"
         Effect = "Allow"
@@ -77,6 +84,8 @@ resource "aws_iam_policy" "lambda_policy" {
         Resource = "*"
       },
 
+
+      # Read Macie findings
       {
         Sid    = "MaciePermissions"
         Effect = "Allow"
@@ -92,7 +101,8 @@ resource "aws_iam_policy" "lambda_policy" {
   })
 }
 
-# Attach Policy to Role
+
+# Attach Policy to Lambda Role
 
 resource "aws_iam_role_policy_attachment" "lambda_attachment" {
   role       = aws_iam_role.lambda_role.name
