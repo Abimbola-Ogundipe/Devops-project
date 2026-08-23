@@ -22,7 +22,7 @@
     1. Runs Python 3.12
     2. Uses the IAM role created in iam.tf
     3. Receives the bucket names through environment variables
-    4. Can later use boto3 to inspect objects and move sensitive files
+    4. Lastly, i wanted to make sure it can later use boto3 to inspect objects and move sensitive files
 4. Grants Permission
 5. Configures the Trigger
 
