@@ -15,10 +15,14 @@
 4. Write logs to CloudWatch, this helps with trouble shooting issues.
 5. Access Amazon Macie findings 
 
-### 6. The lambda.tf file
+### 6. The lambda.tf file contains function that;
 1. Packages the Python code : I made sure Terraform automatically creates the ZIP file that AWS Lambda requires.
 2. Creates a CloudWatch Log Group : Just as explained From step 5, iI ensured every execution of the Lambda function writes logs here.
-3. Creates the Lambda Function
+3. Creates the Lambda Function that can;
+    1. Runs Python 3.12
+    2. Uses the IAM role created in iam.tf
+    3. Receives the bucket names through environment variables
+    4. Can later use boto3 to inspect objects and move sensitive files
 4. Grants Permission
 5. Configures the Trigger
 
