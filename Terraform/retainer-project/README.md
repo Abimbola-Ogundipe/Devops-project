@@ -24,5 +24,5 @@
     3. Receives the bucket names through environment variables
     4. Lastly, i wanted to make sure it can later use boto3 to inspect objects and move/store sensitive files.
 4. Grants Permissio: Normally, S3 cannot invoke a Lambda function.I wrote a function that tells AWS to allow a specific S3 bucket to invoke the Lambda function.
-5. Configures the Trigger
+5. Configures the Trigger: As soon as a file is uploaded (deleted). The Lambda function executes automatically.
 
