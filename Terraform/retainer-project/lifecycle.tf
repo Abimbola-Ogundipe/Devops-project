@@ -8,7 +8,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "quarantine_lifecycle" {
     status = "Enabled"
 
     expiration {
-      days = var.retention_days #instead of hardcoding
+      days = var.retention_days #instead of hardcoding for 30days, I used a variable
     }
 
     noncurrent_version_expiration {
