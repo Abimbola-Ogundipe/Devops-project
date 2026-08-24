@@ -17,12 +17,12 @@
 
 ### 6. The lambda.tf file contains function that;
 1. Packages the Python code : I made sure Terraform automatically creates the ZIP file that AWS Lambda requires.
-2. Creates a CloudWatch Log Group : Just as explained From step 5, iI ensured every execution of the Lambda function writes logs here.
+2. Creates a CloudWatch Log Group : Just as explained From step 5, I ensured every execution of the Lambda function writes logs here.
 3. Creates the Lambda Function that can;
     1. Runs Python 3.12
     2. Uses the IAM role created in iam.tf
     3. Receives the bucket names through environment variables
     4. Lastly, i wanted to make sure it can later use boto3 to inspect objects and move/store sensitive files.
 4. Grants Permissio: Normally, S3 cannot invoke a Lambda function.I wrote a function that tells AWS to allow a specific S3 bucket to invoke the Lambda function.
-5. Configures the Trigger: As soon as a file is uploaded (deleted). The Lambda function executes automatically.
+5. Configures the Trigger: As soon as a file is uploaded (deleted), the Lambda function should executes automatically.
 
