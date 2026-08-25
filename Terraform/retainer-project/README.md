@@ -25,4 +25,4 @@
     4. Lastly, i wanted to make sure it can later use boto3 to inspect objects and move/store sensitive files.
 4. Grants Permissio: Normally, S3 cannot invoke a Lambda function.I wrote a function that tells AWS to allow a specific S3 bucket to invoke the Lambda function.
 5. Configures the Trigger: As soon as a file is uploaded (deleted), the Lambda function should executes automatically.
-
+6. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket for 30 days(used a varaible to avoid hard coding), then automatically deletes it after 30 days.
