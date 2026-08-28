@@ -16,7 +16,7 @@ resource "aws_macie2_account" "this" {
 # Macie Classification Job
 resource "aws_macie2_classification_job" "sensitive_data_scan" {
 
-  job_type = "ONE_TIME"
+  job_type = "SCHEDULED"
 
   name = "${var.project_name}-scan"
 
