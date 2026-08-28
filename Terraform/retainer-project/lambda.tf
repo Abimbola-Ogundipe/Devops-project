@@ -28,10 +28,10 @@ resource "aws_lambda_function" "scanner" {
 
   function_name = var.lambda_function_name
 
-  filename  = data.archive_file.lambda_zip.output_path
+  filename         = data.archive_file.lambda_zip.output_path
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
-  role    = aws_iam_role.lambda_role.arn
+  role = aws_iam_role.lambda_role.arn
 
   handler = "lambda_retention_function.lambda_handler"
 
@@ -59,47 +59,14 @@ resource "aws_lambda_function" "scanner" {
 }
 
 
-# Allow S3 to invoke Lambda
-
-resource "aws_lambda_permission" "allow_s3" {
-
-  statement_id = "AllowExecutionFromS3"
-
-  action = "lambda:InvokeFunction"
-
-  function_name = aws_lambda_function.scanner.function_name
-
-  principal = "s3.amazonaws.com"
-
-  source_arn = aws_s3_bucket.source_bucket.arn
-}
-
-
-# Trigger Lambda when a file is uploaded
-
-resource "aws_s3_bucket_notification" "trigger_lambda" {
-
-  bucket = aws_s3_bucket.source_bucket.id
-
-  lambda_function {
-
-    lambda_function_arn = aws_lambda_function.scanner.arn
-
-    events = [
-      "s3:ObjectCreated:*"
-    ]
-  }
-
-  depends_on = [
-    aws_lambda_permission.allow_s3
-  ]
-}
-
 # CloudWatch schedule to check Macie findings
 
 resource "aws_cloudwatch_event_rule" "macie_check" {
-  name                = "${var.project_name}-macie-check"
-  description         = "Check Macie findings every 15 minutes"
+
+  name = "${var.project_name}-macie-check"
+
+  description = "Check Macie findings every 15 minutes"
+
   schedule_expression = "rate(15 minutes)"
 }
 
@@ -107,7 +74,8 @@ resource "aws_cloudwatch_event_rule" "macie_check" {
 # Allow CloudWatch to invoke Lambda
 
 resource "aws_lambda_permission" "allow_cloudwatch" {
-  statement_id  = "AllowExecutionFromCloudWatch"
+
+  statement_id = "AllowExecutionFromCloudWatch"
 
   action = "lambda:InvokeFunction"
 
@@ -122,6 +90,7 @@ resource "aws_lambda_permission" "allow_cloudwatch" {
 # Connect CloudWatch schedule to Lambda
 
 resource "aws_cloudwatch_event_target" "lambda" {
+
   rule = aws_cloudwatch_event_rule.macie_check.name
 
   target_id = "MacieCheckLambda"
