@@ -14,6 +14,7 @@ resource "aws_macie2_account" "this" {
 }
 
 # Macie Classification Job
+
 resource "aws_macie2_classification_job" "sensitive_data_scan" {
 
   job_type = "SCHEDULED"
@@ -24,7 +25,7 @@ resource "aws_macie2_classification_job" "sensitive_data_scan" {
 
     bucket_definitions {
       account_id = data.aws_caller_identity.current.account_id
-      buckets    = [aws_s3_bucket.source_bucket.id]
+      buckets    = [aws_s3_bucket.source_bucket.bucket]
     }
 
     scoping {
