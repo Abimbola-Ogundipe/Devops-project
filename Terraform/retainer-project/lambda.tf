@@ -94,3 +94,37 @@ resource "aws_s3_bucket_notification" "trigger_lambda" {
     aws_lambda_permission.allow_s3
   ]
 }
+
+# CloudWatch schedule to check Macie findings
+
+resource "aws_cloudwatch_event_rule" "macie_check" {
+  name                = "${var.project_name}-macie-check"
+  description         = "Check Macie findings every 15 minutes"
+  schedule_expression = "rate(15 minutes)"
+}
+
+
+# Allow CloudWatch to invoke Lambda
+
+resource "aws_lambda_permission" "allow_cloudwatch" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+
+  action = "lambda:InvokeFunction"
+
+  function_name = aws_lambda_function.scanner.function_name
+
+  principal = "events.amazonaws.com"
+
+  source_arn = aws_cloudwatch_event_rule.macie_check.arn
+}
+
+
+# Connect CloudWatch schedule to Lambda
+
+resource "aws_cloudwatch_event_target" "lambda" {
+  rule = aws_cloudwatch_event_rule.macie_check.name
+
+  target_id = "MacieCheckLambda"
+
+  arn = aws_lambda_function.scanner.arn
+}
