@@ -6,12 +6,8 @@ resource "aws_macie2_account" "this" {
   status = "ENABLED"
 
   finding_publishing_frequency = "FIFTEEN_MINUTES"
-
-  tags = {
-    Name        = "${var.project_name}-macie"
-    Environment = var.environment
-  }
 }
+
 
 # Macie Classification Job
 
