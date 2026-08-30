@@ -8,7 +8,6 @@ resource "aws_macie2_account" "this" {
   finding_publishing_frequency = "FIFTEEN_MINUTES"
 }
 
-
 # Macie Classification Job
 
 resource "aws_macie2_classification_job" "sensitive_data_scan" {
