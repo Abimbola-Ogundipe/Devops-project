@@ -1,5 +1,3 @@
-
-
 provider "aws" {
   region = var.aws_region
 
@@ -7,3 +5,5 @@ provider "aws" {
     tags = local.common_tags
   }
 }
+
+data "aws_caller_identity" "current" {}
