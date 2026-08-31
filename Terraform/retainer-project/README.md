@@ -15,7 +15,11 @@
 4. Write logs to CloudWatch, this helps with trouble shooting issues.
 5. Access Amazon Macie findings 
 
-### 6. The lambda.tf file contains function that;
+![IAM](image/IAM-retention.jpeg)
+
+### 6. The s3.tf file contains function to create the two buckets;
+
+### 7. The lambda.tf file contains function that;
 1. Packages the Python code : I made sure Terraform automatically creates the ZIP file that AWS Lambda requires.
 2. Creates a CloudWatch Log Group : Just as explained From step 5, I ensured every execution of the Lambda function writes logs here.
 3. Creates the Lambda Function that can;
@@ -23,6 +27,6 @@
     2. Uses the IAM role created in iam.tf
     3. Receives the bucket names through environment variables
     4. Lastly, i wanted to make sure it can later use boto3 to inspect objects and move/store sensitive files.
-4. Grants Permission: Normally, S3 cannot invoke a Lambda function.I wrote a function that tells AWS to allow a specific S3 bucket to invoke the Lambda function.
+4. Grants Permission: Normally, S3 cannot invoke a Lambda function. I wrote a function that tells AWS to allow a specific S3 bucket to invoke the Lambda function.
 5. Configures the Trigger: As soon as a file is uploaded (deleted), the Lambda function should executes automatically.
 6. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket for 30 days, then automatically deletes it after 30 days.
