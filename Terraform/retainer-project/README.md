@@ -19,6 +19,8 @@
 
 ### 6. The s3.tf file contains function to create the two buckets;
 
+![s3](image/empty-quarentine.jpeg)
+
 ### 7. The lambda.tf file contains function that;
 1. Packages the Python code : I made sure Terraform automatically creates the ZIP file that AWS Lambda requires.
 2. Creates a CloudWatch Log Group : Just as explained From step 5, I ensured every execution of the Lambda function writes logs here.
@@ -29,4 +31,16 @@
     4. Lastly, i wanted to make sure it can later use boto3 to inspect objects and move/store sensitive files.
 4. Grants Permission: Normally, S3 cannot invoke a Lambda function. I wrote a function that tells AWS to allow a specific S3 bucket to invoke the Lambda function.
 5. Configures the Trigger: As soon as a file is uploaded (deleted), the Lambda function should executes automatically.
-6. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket for 30 days, then automatically deletes it after 30 days.
+
+![lambda1](image/lambda-function.jpeg)
+![lambda2](image/lambda2.jpeg)
+
+### 8. The macie.tf file 
+
+![Macie1](image/macie1.jpeg)
+![Macie2](image/macie2.jpeg)
+![Macie3](image/macie3.jpeg)
+
+### 9. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket for 30 days, then automatically deletes it after 30 days.
+
+![quarentine-bucket](image/updated-quarentine.jpeg)
