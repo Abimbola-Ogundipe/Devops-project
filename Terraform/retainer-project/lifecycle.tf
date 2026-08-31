@@ -4,7 +4,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "quarantine_lifecycle" {
   bucket = aws_s3_bucket.quarantine_bucket.id
 
   rule {
-    id     = "delete-after-retention-period"
+    id = "delete-after-retention-period"
     status = "Enabled"
 
     expiration {

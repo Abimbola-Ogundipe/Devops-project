@@ -14,30 +14,30 @@ variable "project_name" {
 
 variable "environment" {
   description = "Deployment environment"
-  type        = string
-  default     = "dev"
+  type = string
+  default = "dev"
 }
 
 variable "source_bucket_name" {
   description = "S3 bucket where users upload their files"
-  type        = string
-  default     = "abi2-sensitive-data-source-bucket"
+  type  = string
+  default = "abi2-sensitive-data-source-bucket"
 }
 
 variable "quarantine_bucket_name" {
   description = "S3 bucket used to store sensitive files before permanent deletion."
-  type        = string
-  default     = "abi2-sensitive-data-quarantine-bucket"
+  type = string
+  default = "abi2-sensitive-data-quarantine-bucket"
 }
 
 variable "lambda_function_name" {
   description = "Name of the Lambda function"
-  type        = string
-  default     = "sensitive-data-scanner"
+  type = string
+  default = "sensitive-data-scanner"
 }
 
 variable "retention_days" {
   description = "Number of days sensitive files should be retained"
-  type        = number
-  default     = 30
+  type  = number
+  default  = 30
 }

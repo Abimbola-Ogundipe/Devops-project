@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "source_bucket" {
   bucket = var.source_bucket_name
 
   tags = {
-    Name        = "${var.project_name}-source"
+    Name = "${var.project_name}-source"
     Environment = var.environment
   }
 }
@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "quarantine_bucket" {
   bucket = var.quarantine_bucket_name
 
   tags = {
-    Name        = "${var.project_name}-quarantine"
+    Name  = "${var.project_name}-quarantine"
     Environment = var.environment
   }
 }
@@ -78,9 +78,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "quarantine_encryp
 resource "aws_s3_bucket_public_access_block" "source_public_access" {
   bucket = aws_s3_bucket.source_bucket.id
 
-  block_public_acls       = true
-  ignore_public_acls      = true
-  block_public_policy     = true
+  block_public_acls  = true
+  ignore_public_acls  = true
+  block_public_policy  = true
   restrict_public_buckets = true
 }
 
@@ -90,9 +90,9 @@ resource "aws_s3_bucket_public_access_block" "source_public_access" {
 resource "aws_s3_bucket_public_access_block" "quarantine_public_access" {
   bucket = aws_s3_bucket.quarantine_bucket.id
 
-  block_public_acls       = true
-  ignore_public_acls      = true
-  block_public_policy     = true
+  block_public_acls = true
+  ignore_public_acls = true
+  block_public_policy = true
   restrict_public_buckets = true
 }
 

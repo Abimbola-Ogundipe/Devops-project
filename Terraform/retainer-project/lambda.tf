@@ -28,7 +28,7 @@ resource "aws_lambda_function" "scanner" {
 
   function_name = var.lambda_function_name
 
-  filename         = data.archive_file.lambda_zip.output_path
+  filename  = data.archive_file.lambda_zip.output_path
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
   role = aws_iam_role.lambda_role.arn
@@ -43,9 +43,9 @@ resource "aws_lambda_function" "scanner" {
 
   environment {
     variables = {
-      SOURCE_BUCKET     = aws_s3_bucket.source_bucket.bucket
+      SOURCE_BUCKET  = aws_s3_bucket.source_bucket.bucket
       QUARANTINE_BUCKET = aws_s3_bucket.quarantine_bucket.bucket
-      RETENTION_DAYS    = var.retention_days
+      RETENTION_DAYS  = var.retention_days
     }
   }
 
