@@ -1,0 +1,28 @@
+# Terraform state
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Lambda generated packages
+*.zip
+
+# Test sensitive data
+test-sensitive*.txt
+macie-test.txt
+
+# macOS
+.DS_Store
+
+# Environment/secrets
+.env
+.env.*
+*.pem
+*.key

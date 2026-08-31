@@ -24,42 +24,50 @@ def lambda_handler(event, context):
             "body": "No Macie findings found."
         }
 
-    findings = macie.get_findings(
+    response = macie.get_findings(
         findingIds=finding_ids
     )
 
-    for finding in findings.get("findings", []):
+    for finding in response.get("findings", []):
 
-        resources = finding.get("resources", [])
+        finding_type = finding.get("type", "")
 
-        for resource in resources:
+        if not finding_type.startswith("SensitiveData:S3Object"):
+            continue
 
-            if resource.get("type") != "S3Object":
-                continue
+        resources = finding.get("resourcesAffected", {})
 
-            s3_object = resource.get("s3Object", {})
+        s3_bucket = resources.get("s3Bucket", {})
+        s3_object = resources.get("s3Object", {})
 
-            bucket_name = s3_object.get("bucketName")
-            object_key = s3_object.get("key")
+        bucket_name = s3_bucket.get("name")
+        object_key = s3_object.get("key")
 
-            if bucket_name != SOURCE_BUCKET:
-                continue
 
-            print(f"Sensitive object found: {object_key}")
+        print(f"Bucket: {bucket_name}")
+        print(f"Object: {object_key}")
 
-            s3.copy_object(
-                Bucket=QUARANTINE_BUCKET,
-                CopySource={
-                    "Bucket": SOURCE_BUCKET,
-                    "Key": object_key
-                },
-                Key=object_key
-            )
+        if bucket_name != SOURCE_BUCKET:
+            continue
 
-            print(
-                f"Copied {object_key} "
-                f"to quarantine bucket."
-            )
+        if not object_key:
+            continue
+
+        print(f"Sensitive object found: {object_key}")
+
+        s3.copy_object(
+            CopySource={
+                "Bucket": SOURCE_BUCKET,
+                "Key": object_key
+            },
+            Bucket=QUARANTINE_BUCKET,
+            Key=object_key
+        )
+
+        print(
+            f"Copied {object_key} "
+            f"to quarantine bucket."
+        )
 
     return {
         "statusCode": 200,

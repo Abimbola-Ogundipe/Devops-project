@@ -21,13 +21,13 @@ variable "environment" {
 variable "source_bucket_name" {
   description = "S3 bucket where users upload their files"
   type        = string
-  default     = "sensitive-data-source-bucket"
+  default     = "abi2-sensitive-data-source-bucket"
 }
 
 variable "quarantine_bucket_name" {
   description = "S3 bucket used to store sensitive files before permanent deletion."
   type        = string
-  default     = "sensitive-data-quarantine-bucket"
+  default     = "abi2-sensitive-data-quarantine-bucket"
 }
 
 variable "lambda_function_name" {
