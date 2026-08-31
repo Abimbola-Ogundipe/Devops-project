@@ -26,3 +26,5 @@ macie-test.txt
 .env.*
 *.pem
 *.key
+
+*README2.md
