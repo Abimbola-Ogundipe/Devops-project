@@ -1,7 +1,6 @@
 # Enable Amazon Macie
 resource "aws_macie2_account" "this" {
   status = "ENABLED"
-
   finding_publishing_frequency = "FIFTEEN_MINUTES"
 }
 
@@ -9,7 +8,7 @@ resource "aws_macie2_account" "this" {
 # Custom Data Identifier
 resource "aws_macie2_custom_data_identifier" "test_sensitive_data" {
 
-  name        = "${var.project_name}-custom-sensitive-data"
+  name = "${var.project_name}-custom-sensitive-data"
   description = "Detects project test sensitive data"
 
   regex = "SENSITIVE-[0-9]{6}"

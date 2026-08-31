@@ -39,7 +39,7 @@ resource "aws_iam_policy" "lambda_policy" {
 
       # Read objects from the source S3 bucket
       {
-        Sid    = "ReadSourceBucket"
+        Sid = "ReadSourceBucket"
         Effect = "Allow"
 
         Action = [
@@ -55,7 +55,7 @@ resource "aws_iam_policy" "lambda_policy" {
 
       # Copy sensitive objects to the quarantine bucket
       {
-        Sid    = "WriteToQuarantineBucket"
+        Sid = "WriteToQuarantineBucket"
         Effect = "Allow"
 
         Action = [
@@ -69,7 +69,7 @@ resource "aws_iam_policy" "lambda_policy" {
 
       # CloudWatch logging
       {
-        Sid    = "CloudWatchLogs"
+        Sid = "CloudWatchLogs"
         Effect = "Allow"
 
         Action = [
@@ -83,7 +83,7 @@ resource "aws_iam_policy" "lambda_policy" {
 
       # Read Macie findings
       {
-        Sid    = "MacieFindings"
+        Sid  = "MacieFindings"
         Effect = "Allow"
 
         Action = [
@@ -101,6 +101,6 @@ resource "aws_iam_policy" "lambda_policy" {
 # Attach IAM Policy to Lambda Role
 
 resource "aws_iam_role_policy_attachment" "lambda_attachment" {
-  role       = aws_iam_role.lambda_role.name
+  role  = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
