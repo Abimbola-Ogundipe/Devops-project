@@ -39,7 +39,7 @@
 
 ![Macie1](image/macie1.jpeg)
 ![Macie2](image/macie2.jpeg)
-![Macie3](image/macie3.jpeg)
+![Macie3](image/macie4.jpeg)
 
 ### 9. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket.
 
