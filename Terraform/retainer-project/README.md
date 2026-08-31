@@ -1,4 +1,4 @@
-# This project identifies sensitive data in S3 and ensures that it is retained an additional 30 days before permanent deletion.
+# This project identifies sensitive data in S3 and ensures that it is retained an additional days before permanent deletion.
 
 ### 1. The main.tf file acts as the entry point of your Terraform configuration. The idea is to separate resources into different files, main.tf doesn't need to contain every resource. It simply ties the project together. Such that, Terraform automatically loads all .tf files in the same directory. 
 
@@ -41,6 +41,6 @@
 ![Macie2](image/macie2.jpeg)
 ![Macie3](image/macie3.jpeg)
 
-### 9. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket for 30 days, then automatically deletes it after 30 days.
+### 9. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket.
 
 ![quarentine-bucket](image/updated-quarentine.jpeg)
