@@ -35,12 +35,17 @@
 ![lambda1](image/lambda-function.jpeg)
 ![lambda2](image/lambda2.jpeg)
 
-### 8. The macie.tf file 
+### 8. The macie.tf file;
+1. Scans S3 buckets for sensitive file.
+2. Finds sensitive data
+3. Pass it on to Lamda
 
 ![Macie1](image/macie1.jpeg)
 ![Macie2](image/macie2.jpeg)
 ![Macie3](image/macie4.jpeg)
 
-### 9. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket.
+### 9. The lambda_retention_function.py file contains the Python program that allows Lambda to retrieve sensitive-data findings from Amazon Macie, identify the affected S3 objects, and copy those objects from the source bucket to the quarantine bucket.
+
+### 10. The lifecycle.tf file takes sensitve file sorted by lamda funtion, and kept in the quarantine bucket.
 
 ![quarentine-bucket](image/updated-quarentine.jpeg)
