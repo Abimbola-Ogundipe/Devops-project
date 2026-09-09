@@ -1,4 +1,4 @@
-# This is a Terraform folder and it's sub-directories.
+# This is a Terraform folder and it's sub-directories. Under this path are folders for other projects. 
 
 ## The main.tf file of this directory will be described below;
 
