@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Incident Reporting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f6f8;
+            color: #222;
+        }
+        h1 { color: #17365d; }
+        form, .incident {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        input, textarea, select, button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 16px;
+        }
+        button {
+            background: #17365d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .severity { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Secure Incident Reporting</h1>
+    <p>Report and review security incidents.</p>
+
+    <form action="/incidents" method="post">
+        <label for="title">Incident title</label>
+        <input id="title" name="title" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <label for="severity">Severity</label>
+        <select id="severity" name="severity">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+            <option>Critical</option>
+        </select>
+
+        <button type="submit">Submit Incident</button>
+    </form>
+
+    <h2>Reported Incidents</h2>
+    {% for incident in incidents %}
+    <div class="incident">
+        <h3>{{ incident.title }}</h3>
+        <p>{{ incident.description }}</p>
+        <p class="severity">Severity: {{ incident.severity }}</p>
+    </div>
+    {% else %}
+    <p>No incidents reported yet.</p>
+    {% endfor %}
+</body>
+</html>
+
